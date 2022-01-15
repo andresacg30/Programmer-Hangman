@@ -1,0 +1,50 @@
+import random
+
+# Introduction
+random.seed()
+print("H A N G M A N")
+
+# Variables
+words = ['python', 'java', 'kotlin', 'javascript']
+correct_word = [letter for letter in random.choice(words)]
+tries = 8
+letter_tries = set()
+game_word = ["-" for i in range(len(correct_word))]
+user_selection = input('Type "play" to play the game, "exit" to quit:')
+
+# Algorithm for game
+while tries > 0 and game_word != correct_word:
+    if user_selection == "play":
+        print()
+        print("".join(game_word))
+        user_try = input("Input a letter:")
+        error_message = ""  # Contains last error checked
+        if len(user_try) > 1:
+            print("You should input a single letter")
+        elif not user_try.islower():
+            print("Please enter a lowercase English letter")
+        else:
+            if user_try not in correct_word:
+                if user_try not in letter_tries:
+                    tries -= 1
+                    letter_tries.add(user_try)
+                    error_message = "That letter doesn't appear in the word"
+                    print(error_message)
+                else:
+                    print("You've already guessed this letter")
+            else:  # For correct answer
+                if user_try not in letter_tries:
+                    index = [index for index, element in enumerate(correct_word) if element == user_try]
+                    for i in index:
+                        game_word[i] = user_try
+                    letter_tries.add(user_try)
+                else:  # Unless the user already guessed that letter
+                    print("You've already guessed this letter")
+        # Final message for game ending
+        if game_word == correct_word:
+            print("You guessed the word!\nYou survived!")
+        else:
+            print('You lost!')
+    else:
+        break
+
