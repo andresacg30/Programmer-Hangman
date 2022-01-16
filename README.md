@@ -8,3 +8,4 @@ Once you're playing, it will show you the length of the word and ask you to star
 If your input is not a lowercase English letter, it will trow you an error.
 If your letter is not in the word, you will lose a live.
 Game is finished when you guess the word or you lost all lives!
+
